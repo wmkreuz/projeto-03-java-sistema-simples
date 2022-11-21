@@ -10,6 +10,7 @@ import java.text.Normalizer;
 
 public class StringUtil {
 
+	@SuppressWarnings("unused")
 	private final static char SEPARATOR = '\n';
 	public static String numeros = "0-9";
 	public static String letras = "A-Z";

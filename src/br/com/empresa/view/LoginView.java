@@ -21,6 +21,7 @@ import br.com.empresa.vo.UsuarioVO;
 import javax.swing.ImageIcon;
 
 
+@SuppressWarnings("serial")
 public class LoginView extends JFrame {
 	private JTextField textLogin;
 	
@@ -121,7 +122,7 @@ public class LoginView extends JFrame {
 		try {
 			UsuarioVO usuario = servicoBeanLocal.validarAcesso(login, senha);
 			
-			Dados.setUsuarioLogado(usuario);
+			Dados.setUsuarioSelecionado(usuario);
 			
 			SelecaoClienteView selecao = new SelecaoClienteView();
 			selecao.setVisible(true);

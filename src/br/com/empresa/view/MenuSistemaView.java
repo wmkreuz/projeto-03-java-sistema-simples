@@ -18,6 +18,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.Toolkit;
 
+@SuppressWarnings("serial")
 public class MenuSistemaView extends JFrame {
 	/**
 	 * Create the frame.

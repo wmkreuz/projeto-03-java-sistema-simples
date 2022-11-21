@@ -11,13 +11,9 @@ import javax.swing.JComboBox;
 import javax.swing.JDialog;
 import javax.swing.JFormattedTextField;
 import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JSeparator;
 import javax.swing.JTextField;
 
-import br.com.empresa.dao.Dados;
-import br.com.empresa.exception.BOException;
-import br.com.empresa.exception.BOValidationException;
 import br.com.empresa.service.IServicoBeanLocal;
 import br.com.empresa.service.ServicoBeanLocal;
 import br.com.empresa.view.util.MascaraJFormattedTextField;
@@ -27,6 +23,7 @@ import br.com.empresa.vo.enums.EstadoEnum;
 import br.com.empresa.vo.enums.TipoPessoaEnum;
 import javax.swing.ImageIcon;
 
+@SuppressWarnings("serial")
 public class ConsumidorFornecedorView extends JDialog {
 	
 	private JTextField tfCodigo;
@@ -37,15 +34,20 @@ public class ConsumidorFornecedorView extends JDialog {
 	private JTextField tfNumero;
 	private JTextField tfBairro;
 	private JTextField tfCidade;
+	@SuppressWarnings("rawtypes")
 	private JComboBox cbPessoa;
+	@SuppressWarnings("rawtypes")
 	private JComboBox cbEstado;
 	private JFormattedTextField ftfCpfCnpj;
 	private JLabel lblCpfCnpj;
 	
+	@SuppressWarnings("unused")
 	private PessoaVO pessoaVO;
 	
+	@SuppressWarnings("unused")
 	private IServicoBeanLocal servicoBeanLocal;
 	
+	@SuppressWarnings("unused")
 	private ConsultaConsumidorFornecedorView telaAnterior;
 
 
@@ -64,6 +66,7 @@ public class ConsumidorFornecedorView extends JDialog {
 
 	}
 	
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	private void inicializarComponentes() {
 		
 		servicoBeanLocal = new ServicoBeanLocal();
@@ -206,7 +209,7 @@ public class ConsumidorFornecedorView extends JDialog {
 		btnSalvar.setIcon(new ImageIcon(ConsumidorFornecedorView.class.getResource("/br/com/empresa/view/img/salvar.png")));
 		btnSalvar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				salvar();
+				//salvar();
 			}
 		});
 		btnSalvar.setBounds(156, 340, 106, 33);
@@ -217,7 +220,7 @@ public class ConsumidorFornecedorView extends JDialog {
 		getContentPane().add(separator);
 	}
 	
-	private void salvar() {
+	/*private void salvar() {
 		
 		TipoPessoaEnum tp = (TipoPessoaEnum) cbPessoa.getSelectedItem();
 		pessoaVO.setTippes(tp.name());
@@ -257,7 +260,7 @@ public class ConsumidorFornecedorView extends JDialog {
 			e.printStackTrace();
 		}
 		
-	}
+	}*/
 	
 	private void fechar() {
 		this.setVisible(false);

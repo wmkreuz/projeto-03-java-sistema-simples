@@ -3,37 +3,115 @@ package br.com.empresa.vo;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.math.BigInteger;
-import java.util.Objects;
+import java.util.Date;
 
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
+
+@Entity
+@Table(name = "ESPRODUT")
 public class ProdutoVO implements Serializable {
 
 	private static final long serialVersionUID = 3929961339408678201L;
 
+	@Id
+	@Basic(optional = false)
+	@NotNull
+	@Column(name = "id", nullable = false)
+	@SequenceGenerator(name = "SQ_ESPRODUT", sequenceName = "SQ_ESPRODUT",
+			allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.AUTO, 
+		generator = "SQ_ESPRODUT")
 	private BigInteger id;
 	
 	//Nome do produto - 100 caracteres
+	@Basic(optional = false)
+	@NotNull
+	@Size(min = 1, max = 100)
+	@Column(name = "descri", nullable = false, length = 100)
 	private String descri;
 	
 	//Código de barras - 20 caracteres
+	@Basic
+	@Column(name = "codbar", length = 20)
 	private String codbar;
 	
 	//Status - 1 caracter
+	@Basic(optional = false)
+	@NotNull
+	@Size(min = 1, max = 1)
+	@Column(name = "status", nullable = false, length = 1)
 	private String status;
 	
 	//Quantidade em estoque - 7 inteiros e 4 decimais
+	@Basic(optional = false)
+	@NotNull
+	@Column(name = "qtdest", nullable = false, precision = 7, scale = 4)
 	private BigDecimal qtdest;
 	
 	//Valor de compra - 7 inteiros e 2 decimais
+	@Basic(optional = false)
+	@NotNull
+	@Column(name = "vlrcom", nullable = false, precision = 7, scale = 2)
 	private BigDecimal valcom;
-	
+		
 	//Valor de venda - 7 inteiros e 2 decimais
+	@Basic(optional = false)
+	@NotNull
+	@Column(name = "vlrven", nullable = false, precision = 7, scale = 2)
 	private BigDecimal valven;
 	
 	//Cliente
-	private ClienteVO cliente;
+	@NotNull
+	@JoinColumn(name = "client", referencedColumnName = "id", 
+		nullable = false)
+	@ManyToOne(optional = false, fetch = FetchType.LAZY)
+	private ClienteVO client;
 	
+	//Data Fabricação
+	@Basic(optional = true)
+	@Column(name = "datfab", nullable = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date datfab;
+	
+	
+	
+	//Data Validade
+	@Basic(optional = true)
+	@Column(name = "datval", nullable = true)
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date datval;
+	
+	public Date getDatfab() {
+		return datfab;
+	}
+
+	public void setDatfab(Date datfab) {
+		this.datfab = datfab;
+	}
+
+	public Date getDatval() {
+		return datval;
+	}
+
+	public void setDatval(Date datval) {
+		this.datval = datval;
+	}
+
 	public ProdutoVO() {
-		super();
 	}
 
 	public ProdutoVO(BigInteger id) {
@@ -74,12 +152,12 @@ public class ProdutoVO implements Serializable {
 	}
 
 
-	public ClienteVO getCliente() {
-		return cliente;
+	public ClienteVO getClient() {
+		return client;
 	}
 
-	public void setCliente(ClienteVO cliente) {
-		this.cliente = cliente;
+	public void setClient(ClienteVO client) {
+		this.client = client;
 	}
 	
 	public BigDecimal getValcom() {
@@ -134,21 +212,4 @@ public class ProdutoVO implements Serializable {
 			return false;
 		return true;
 	}
-	
-	/*@Override
-	public int hashCode() {
-		return Objects.hash(id);
-	}
-	
-	@Override
-	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		ProdutoVO other = (ProdutoVO) obj;
-		return Objects.equals(id, other.id);
-	}*/
 }

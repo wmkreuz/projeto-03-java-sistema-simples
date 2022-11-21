@@ -17,7 +17,6 @@ public class UsuarioBO implements IUsuarioBO{
 	@Override
 	public UsuarioVO validarAcesso(String login, String senha) 
 			throws BOValidationException, BOException{
-		// TODO Auto-generated method stub
 		
 		if(login == null || login.trim().length() == 0) {
 			throw new BOValidationException("Login: erro de validaçõa. Informação Obrigatória");

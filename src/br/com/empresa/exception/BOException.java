@@ -1,5 +1,6 @@
 package br.com.empresa.exception;
 
+@SuppressWarnings("serial")
 public class BOException extends Exception{
 
 	public BOException() {

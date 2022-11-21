@@ -1,6 +1,5 @@
 package br.com.empresa.view;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -18,8 +17,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextField;
 import javax.swing.ListModel;
 import javax.swing.border.EmptyBorder;
-import javax.swing.border.LineBorder;
-
 import br.com.empresa.dao.Dados;
 import br.com.empresa.exception.BOException;
 import br.com.empresa.service.IServicoBeanLocal;
@@ -27,14 +24,17 @@ import br.com.empresa.service.ServicoBeanLocal;
 import br.com.empresa.vo.ClienteVO;
 import br.com.empresa.vo.UsuarioClienteVO;
 
+@SuppressWarnings("serial")
 public class SelecaoClienteView extends JFrame {
 
 	private JPanel contentPane;
 	private JTextField textFiltro;
+	@SuppressWarnings("rawtypes")
 	private JList list;
 	/**
 	 * Create the frame.
 	 */
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public SelecaoClienteView() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(SelecaoClienteView.class.getResource("/br/com/empresa/view/img/logosenac.jpg")));
 		setTitle("Seleção de instituição");
@@ -98,6 +98,7 @@ public class SelecaoClienteView extends JFrame {
 	}
 	
 	private void selecionarCliente() {
+		@SuppressWarnings("rawtypes")
 		DefaultListModel defaultListModel = (DefaultListModel) list.getModel();
 		
 		if(list.getSelectedIndex() >= 0) {
@@ -135,13 +136,15 @@ public class SelecaoClienteView extends JFrame {
 		}
 	}
 	
+	@SuppressWarnings("unchecked")
 	private void caregarValoresListModel() {
 		
 		IServicoBeanLocal serviceBeanLocal = new ServicoBeanLocal();
 		try {
 			List<UsuarioClienteVO> usuarioClienteVOs = 
-					serviceBeanLocal.listarClienteUsuario(Dados.getUsuarioLogado());
+					serviceBeanLocal.listarClienteUsuario(Dados.getUsuarioSelecionado());
 			
+			@SuppressWarnings("rawtypes")
 			DefaultListModel defautListModel = (DefaultListModel) list.getModel();
 			defautListModel.clear();
 			

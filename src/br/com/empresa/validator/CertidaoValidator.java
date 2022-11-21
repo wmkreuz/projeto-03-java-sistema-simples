@@ -55,6 +55,7 @@ public class CertidaoValidator implements IValidator {
 	 * @throws ValidatorInvalidValueException
 	 * @throws ValidatorFieldException
 	 */
+	@SuppressWarnings("removal")
 	public void validateIExpertise(Object object) throws ValidatorInvalidValueException, ValidatorFieldException {
 
 		if (!(object instanceof String))

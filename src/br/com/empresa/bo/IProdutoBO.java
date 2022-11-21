@@ -1,5 +1,6 @@
 package br.com.empresa.bo;
 
+import java.io.File;
 import java.math.BigInteger;
 import java.util.List;
 import java.util.Map;
@@ -16,12 +17,17 @@ public interface IProdutoBO {
 	
 	public abstract void salvarProduto(ProdutoVO produto) throws BOValidationException, BOException;
 	
+	public abstract void importarProdutos(List<ProdutoVO> produtos) throws BOValidationException, BOException;
+	
+	public abstract void exportarProdutos(File raiz, ClienteVO client) throws BOException;
+	
 	public abstract void excluirProduto(ProdutoVO produto) throws BOValidationException, BOException;
 	
 	public abstract ProdutoVO buscarProdutoPorId(ProdutoVO produto) throws BOException;
 	
 	public abstract List<ProdutoVO> listarProdutos(int first, int pageSize,
 		       Map<String, Object> filters, ClienteVO cliente) throws BOException;
+
 	
 	
 }

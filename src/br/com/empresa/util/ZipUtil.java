@@ -105,7 +105,8 @@ public class ZipUtil {
     }  
   }  
     
-  public List criarZip( File arquivoZip, File[] arquivos ) throws ZipException, IOException {  
+  @SuppressWarnings("rawtypes")
+public List criarZip( File arquivoZip, File[] arquivos ) throws ZipException, IOException {  
     FileOutputStream fos = null;  
     BufferedOutputStream bos = null;  
     setArquivoZipAtual( null );  
@@ -134,7 +135,8 @@ public class ZipUtil {
     }  
   }  
     
-  public List criarZip( OutputStream os, File[] arquivos ) throws ZipException, IOException {  
+  @SuppressWarnings({ "rawtypes", "unchecked" })
+public List criarZip( OutputStream os, File[] arquivos ) throws ZipException, IOException {  
     if( arquivos == null || arquivos.length < 1 ) {  
       throw new ZipException("Adicione ao menos um arquivo ou diret�rio");  
     }  
@@ -160,7 +162,8 @@ public class ZipUtil {
     return listaEntradasZip;  
   }  
     
-  private List adicionarArquivoNoZip( ZipOutputStream zos, File arquivo, String caminhoInicial ) throws IOException {  
+  @SuppressWarnings({ "rawtypes", "unchecked" })
+private List adicionarArquivoNoZip( ZipOutputStream zos, File arquivo, String caminhoInicial ) throws IOException {  
     List listaEntradasZip = new ArrayList();  
     FileInputStream fis = null;  
     BufferedInputStream bis = null;  

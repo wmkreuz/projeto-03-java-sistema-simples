@@ -5,8 +5,6 @@ import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.List;
-
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -22,33 +20,34 @@ import javax.swing.ScrollPaneConstants;
 import javax.swing.border.LineBorder;
 import javax.swing.table.TableColumnModel;
 
-import br.com.empresa.dao.Dados;
-import br.com.empresa.exception.BOException;
-import br.com.empresa.exception.BOValidationException;
 import br.com.empresa.service.IServicoBeanLocal;
 import br.com.empresa.service.ServicoBeanLocal;
 import br.com.empresa.view.util.MascaraJFormattedTextField;
-import br.com.empresa.view.util.RowData;
 import br.com.empresa.view.util.TableModel;
 import br.com.empresa.vo.PessoaVO;
 import br.com.empresa.vo.enums.EstadoEnum;
 import br.com.empresa.vo.enums.TipoPessoaEnum;
 import javax.swing.ImageIcon;
 
+@SuppressWarnings("serial")
 public class ConsultaConsumidorFornecedorView extends JDialog {
 
 	private JTextField tfNome;
 	private JTextField tfCidade;
 	private JTable table;
+	@SuppressWarnings("rawtypes")
 	private JComboBox cbPessoa;
+	@SuppressWarnings("rawtypes")
 	private JComboBox cbEstado;
 	private JFormattedTextField ftfCpfCnpj;
 	private JLabel lblCpfCnpj;
 	private TableModel tableModel;
 
+	@SuppressWarnings("unused")
 	private IServicoBeanLocal serviceBeanLocal;
 
 
+	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public ConsultaConsumidorFornecedorView() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(ConsultaConsumidorFornecedorView.class.getResource("/br/com/empresa/view/img/logosenac.jpg")));
 
@@ -123,7 +122,7 @@ public class ConsultaConsumidorFornecedorView extends JDialog {
 		JButton btnPesquisar = new JButton("Pesquisar");
 		btnPesquisar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				pesquisar();
+				//pesquisar();
 			}
 		});
 		btnPesquisar.setBounds(459, 67, 100, 23);
@@ -162,7 +161,7 @@ public class ConsultaConsumidorFornecedorView extends JDialog {
 		btnExcluir.setIcon(new ImageIcon(ConsultaConsumidorFornecedorView.class.getResource("/br/com/empresa/view/img/remove.png")));
 		btnExcluir.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				excluir();
+				//excluir();
 			}
 		});
 		btnExcluir.setBounds(270, 124, 120, 33);
@@ -202,7 +201,7 @@ public class ConsultaConsumidorFornecedorView extends JDialog {
 		tableColumnModel.getColumn(3).setPreferredWidth(100);
 		tableColumnModel.getColumn(4).setPreferredWidth(150);
 
-		pesquisar();
+		//pesquisar();
 
 		scrollPane.setViewportView(table);
 
@@ -248,7 +247,7 @@ public class ConsultaConsumidorFornecedorView extends JDialog {
 		this.dispose();
 	}
 
-	private void excluir() {
+	/*private void excluir() {
 
 		if (table.getSelectedRow() < 0) {
 			JOptionPane.showMessageDialog(this, "É necessário selecionar um registro!", "Mensagem de aviso!",
@@ -273,7 +272,7 @@ public class ConsultaConsumidorFornecedorView extends JDialog {
 
 		}
 
-	}
+	}*/
 
 	private void limpar() {
 
@@ -283,11 +282,11 @@ public class ConsultaConsumidorFornecedorView extends JDialog {
 		cbPessoa.setSelectedIndex(0);
 		ftfCpfCnpj.setText(null);
 		alterarTipoPessoa();
-		pesquisar();
+		//pesquisar();
 
 	}
 
-	protected void pesquisar() {
+	/*protected void pesquisar() {
 
 		TableModel tableModel = (TableModel) table.getModel();
 		tableModel.clearTable();
@@ -329,7 +328,7 @@ public class ConsultaConsumidorFornecedorView extends JDialog {
 					JOptionPane.ERROR_MESSAGE);
 		}
 
-	}
+	}*/
 
 	private void alterarTipoPessoa() {
 

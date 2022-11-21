@@ -2,33 +2,49 @@ package br.com.empresa.vo;
 
 import java.io.Serializable;
 import java.math.BigInteger;
-import java.util.Objects;
 
-public class ClienteVO implements Serializable{
+import javax.persistence.Basic;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
-	private static final long serialVersionUID = -1559895156741900940L;
+@Entity
+@Table(name = "SICLIENT")
+public class ClienteVO implements Serializable {
 
+	private static final long serialVersionUID = 4342674836546855806L;
+
+	@Id
+	@Basic(optional = false)
+	@NotNull
+	@Column(name = "ID", nullable = false)
+	@SequenceGenerator(name = "SQ_SICLIENT", sequenceName = "SQ_SICLIENT",
+			allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.AUTO, 
+		generator = "SQ_SICLIENT")
 	private BigInteger id;
-	
+
 	//Nome do cliente - 100 caracteres
+	@Basic(optional = false)
+	@NotNull
+	@Size(min = 1, max = 100)
+	@Column(name = "descri", nullable = false, length = 100)
 	private String descri;
 
 	public ClienteVO() {
 		super();
-		// TODO Auto-generated constructor stub
 	}
 
-	public ClienteVO(BigInteger id) {
+	public ClienteVO(BigInteger id, String descri) {
 		super();
 		this.id = id;
-	}
-
-	public BigInteger getId() {
-		return id;
-	}
-
-	public void setId(BigInteger id) {
-		this.id = id;
+		this.descri = descri;
 	}
 
 	public String getDescri() {
@@ -39,13 +55,12 @@ public class ClienteVO implements Serializable{
 		this.descri = descri;
 	}
 
-	public static long getSerialversionuid() {
-		return serialVersionUID;
-	}
-
 	@Override
 	public int hashCode() {
-		return Objects.hash(id);
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
 	@Override
@@ -57,12 +72,25 @@ public class ClienteVO implements Serializable{
 		if (getClass() != obj.getClass())
 			return false;
 		ClienteVO other = (ClienteVO) obj;
-		return Objects.equals(id, other.id);
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
-	
+
 	@Override
 	public String toString() {
-		return this.descri;
+		return descri;
 	}
-	
+
+	public BigInteger getId() {
+		return id;
+	}
+
+	public void setId(BigInteger id) {
+		this.id = id;
+	}
+
 }
